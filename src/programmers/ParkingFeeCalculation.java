@@ -30,7 +30,7 @@ class ParkingFeeCalculation {
             }
         }
 
-        // HashMap keySet 순서대로 sorting하기
+        // HashMap keySet 순서대로 sorting하기 : 차량번호 오름차순 정렬
         Object[] mapKey = sepRecords.keySet().toArray();
         Arrays.sort(mapKey);
 
@@ -39,44 +39,45 @@ class ParkingFeeCalculation {
         int[] answer = new int[mapLength];
 
         for (int i = 0; i < mapLength; i++) {
-            // 총 시간(분)
+            // 총 시간(분) 저장
             int totalMin = 0;
             // 반복할 list의 길이 저장 변수
             int listLength = sepRecords.get(mapKey[i]).size();
-            // IN일 경우 시간, 분 저장 변수
-            int preHour = 0;
-            int preMin = 0;
-            // 낮은 차량번호의 입출차 기록부터 하나씩 받아옴
+            // 입차(IN)일 경우의 시간과 분 저장 변수
+            int inHour = 0;
+            int inMin = 0;
+            // 오름차순 차량번호 입출차 순서로 받아옴 (mapKey 배열)
             List<String> list = sepRecords.get(mapKey[i]);
 
             for (int j = 0; j < listLength; j++) {
                 // 시간(시:분), 내역(IN, OUT) 분리
                 String[] splitRecord = list.get(j).split(" ");
-                // IN일 경우
+                // 입차(IN)일 경우
                 if (splitRecord[1].equals("IN")) {
                     // 시간, 분 나누고 정수로 변환
-                    preHour = Integer.parseInt(splitRecord[0].split(":")[0]);
-                    preMin = Integer.parseInt(splitRecord[0].split(":")[1]);
+                    inHour = Integer.parseInt(splitRecord[0].split(":")[0]);
+                    inMin = Integer.parseInt(splitRecord[0].split(":")[1]);
 
-                    // 만약 IN인데 for문의 마지막 반복이라면 OUT기록이 없는것 따라서 23:59를 출차로 두고 계산
+                    // 만약 입차(IN)인데 for문의 마지막 반복이라면 출차(OUT)기록이 없는것
+                    // 따라서 기본시간(23:59)을 출차(OUT)로 두고 계산
                     if (j == listLength - 1) {
-                        totalMin += (23 - preHour) * 60;
-                        totalMin += 59 - preMin;
+                        totalMin += (23 - inHour) * 60;
+                        totalMin += 59 - inMin;
                     }
                 }
-                // OUT일 경우
+                // 출차(OUT)일 경우
                 else {
-                    // 시간, 분 나누고 정수 변환
-                    int hour = Integer.parseInt(splitRecord[0].split(":")[0]);
-                    int min = Integer.parseInt(splitRecord[0].split(":")[1]);
+                    // 출차(OUT)일 경우 시간과 분 나누고 정수 변환
+                    int outHour = Integer.parseInt(splitRecord[0].split(":")[0]);
+                    int outMin = Integer.parseInt(splitRecord[0].split(":")[1]);
 
-                    // 자리내림이 필요한 경우(23분 - 40분)와 그렇지 않은경우의 연산 분리
-                    if (min - preMin < 0) {
-                        totalMin += (hour - preHour - 1) * 60;
-                        totalMin += min - preMin + 60;
+                    // 시간에서 자리내림이 필요한 경우(ex) 23분 - 40분)와 그렇지 않은경우의 연산 분리
+                    if (outMin - inMin < 0) {
+                        totalMin += (outHour - inHour - 1) * 60;
+                        totalMin += outMin - inMin + 60;
                     } else {
-                        totalMin += (hour - preHour) * 60;
-                        totalMin += min - preMin;
+                        totalMin += (outHour - inHour) * 60;
+                        totalMin += outMin - inMin;
                     }
                 }
 
@@ -85,7 +86,7 @@ class ParkingFeeCalculation {
             if (totalMin > fees[0]) {
                 answer[i] = fees[1] + (int)Math.ceil((double)(totalMin - fees[0]) / fees[2]) * fees[3];
             } else {
-                // 기본 시간이 더 크므로 기본요금 적용
+                // 기본 시간(분)이 더 크므로 기본요금(원) 적용
                 answer[i] = fees[1];
             }
         }
