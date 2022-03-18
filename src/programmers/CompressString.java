@@ -32,10 +32,10 @@ class CompressString {
                         // 압축횟수 + 문자열로 대치시킴
                         if (count == 2) {
                             newS.replace(newSLength - size, newSLength, String.valueOf(count) + temp);
-                            // 압축횟수가 1자릿수일 경우를 고려해 size + 1를 뻄
+                            // 압축횟수가 1자릿수일 경우를 고려해 size + 1을 뻄
                         } else if (count < 11) {
                             newS.replace(newSLength - (size + 1), newSLength, String.valueOf(count) + temp);
-                            // 압축횟수가 2자릿수일 경우를 고려해 size + 2를 뺌
+                            // 압축횟수가 2자릿수일 경우를 고려해 size + 2을 뺌
                         } else {
                             newS.replace(newSLength - (size + 2), newSLength, String.valueOf(count) + temp);
                         }
