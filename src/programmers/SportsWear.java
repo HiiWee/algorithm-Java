@@ -3,6 +3,7 @@ package programmers;
 class SportsWear {
     public static int solution(int n, int[] lost, int[] reserve) {
         int answer = n;
+        // 전체 배열을 총 학생수 + 1을해 인덱스로 검사할때 추가검사 할 필요가 없다.
         int[] students = new int[n + 1];
 
         // 여분있는 학생 추가
@@ -27,6 +28,7 @@ class SportsWear {
                     students[i]++;
                     students[i - 1]--;
                 }
+                // 앞사람 체육복 없으면 뒷사람 체육복 여분있는지 확인
                 else if (i > 0 && students[i + 1] == 1) {
                     students[i]++;
                     students[i + 1]--;
