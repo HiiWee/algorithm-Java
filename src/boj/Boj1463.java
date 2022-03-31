@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class Main {
+class Boj1463 {
     static void calc(int n, int[] dp) {
         for (int i = 2; i <= n; i++) {
             dp[i] = dp[i - 1] + 1;
