@@ -39,11 +39,11 @@ class FindDecimals {
             if (!visited[i]) {
                 // 현재 번호 + numbers에서 i번째 숫자 1개 (ex: "" + "1" == "1")
                 String number = current + numbers.charAt(i);
-                // 위에서 조합한 번호가 소수인지 판별
-                setDecimals(number);
+                // 위에서 조합한 번호가 소수인지 판별 소수라면 set에 담음
+                if (isDecimals(number)) set.add(Integer.valueOf(number));
                 // 지금 방문한 번호는 탐색하지 못하도록 막음
                 visited[i] = true;
-                // 깊이++, 현재번호==조합한번호, 전체 번호
+                // 깊이+1, 현재번호==조합한번호, 전체 번호
                 backTracking(depth + 1, number, numbers);
                 // numbers = [1, 2, 3]에서 1로 시작하는 숫자들을 모두 조합완료하면
                 // 2로 시작하는 숫자를 조합할때 1을 이용해야함 따라서 방문할 수 있게 열어둔다.
@@ -52,19 +52,19 @@ class FindDecimals {
         }
     }
 
-    public static void setDecimals(String number) {
+    public static boolean isDecimals(String number) {
         int n = Integer.parseInt(number);
         int count = 0;
         if (n == 0 || n == 1) {
-            return;
+            return false;
         }
-        // 중요!! 시간줄이기 : 전체 for문을 돌며 count하기 보단 소수가 아님이 판별되면 즉시 종료
+        // 중요!! 시간줄이기 : 전체 for문을 돌며 count하기 보단 소수가 아님이 판별되면 false
         for (int i = 1; i <= n / 2; i++) {
             if (n % i == 0 && i > 1) {
-                return;
+                return false;
             }
         }
-        set.add(n);
+        return true;
     }
 
     public static void main(String[] args) {
