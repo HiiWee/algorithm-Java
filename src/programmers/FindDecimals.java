@@ -54,7 +54,6 @@ class FindDecimals {
 
     public static boolean isDecimals(String number) {
         int n = Integer.parseInt(number);
-        int count = 0;
         if (n == 0 || n == 1) {
             return false;
         }
