@@ -45,7 +45,7 @@ class Boj11055_1 {
 }
 
 // Bottom-Up
-class Main {
+class Boj11055_2 {
     static int N;
     static int[] dp;
     static int[] arr;
