@@ -30,7 +30,7 @@ class Boj1699_1 {
 }
 
 // Top-Down
-class Main {
+class Boj1699_2 {
     static Integer[] dp;
 
     public static void main(String[] args) throws Exception {
