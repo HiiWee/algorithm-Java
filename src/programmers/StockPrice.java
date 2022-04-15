@@ -9,11 +9,6 @@ class StockPrice {
         int[] arr = new int[prices.length];
 
         for (int i = 0; i < prices.length; i++) {
-            arr[i] = -1;
-        }
-        arr[prices.length - 1] = 0;
-
-        for (int i = 0; i < prices.length; i++) {
             for (int j = i + 1; j < prices.length; j++) {
                 if (prices[i] == 1 || j == prices.length - 1) {
                     arr[i] = prices.length - i - 1;
