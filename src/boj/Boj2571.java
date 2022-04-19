@@ -15,7 +15,7 @@ class Boj2571 {
         for (int i = 0; i < n; i++) {
             list.add(Integer.parseInt(bf.readLine()));
         }
-        // TimSort g
+        // TimSort nlog(n)
         Collections.sort(list);
 
         for (int num : list) {
