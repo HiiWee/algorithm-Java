@@ -17,10 +17,10 @@ class Boj10814 {
         }
 
         Arrays.sort(arr, (e1, e2) -> {
-            return Integer.parseInt(e1[0]) - Integer.parseInt(e2[현]);
+            return Integer.parseInt(e1[0]) - Integer.parseInt(e2[0]);
         });
 
-        // 람다식의 원래 표
+        // 람다식의 원래 표현
 //        Arrays.sort(arr, new Comparator<String[]>() {
 //            @Override
 //            public int compare(String[] o1, String[] o2) {
