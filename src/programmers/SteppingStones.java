@@ -58,6 +58,7 @@ class SteppingStones_2 {
         }
         return answer;
     }
+
     public boolean calc(int[] stones, int num, int k) {
         int count = 0;
 
