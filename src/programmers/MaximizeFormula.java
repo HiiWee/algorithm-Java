@@ -2,7 +2,7 @@ package programmers;
 
 import java.util.Stack;
 
-class Solution {
+class MaximizeFormula {
     // 연산자
     static Stack<Character> opStack;
     // 피연산자
