@@ -10,7 +10,7 @@ import java.util.ListIterator;
 
 // 복잡도 및 시간을 줄일 수 있는 방법 숙지
 
-class Main {
+class Boj1406 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
