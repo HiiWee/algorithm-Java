@@ -28,7 +28,7 @@ class MenuRenewal {
         }
         put();
         sb.setLength(0);
-        // 3. 각 course길이의 Max값을 구하고 max값과 같은것들은 모두 메뉴로 추가
+        // 3. 각 course길이의 Max값을 구하고 max값과 크거나 같은것들은 모두 메뉴로 추가
         for (int i = 0; i < course.length; i++) {
             int max = 2;
             for (String key : map.keySet()) {
