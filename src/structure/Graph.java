@@ -5,7 +5,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Graph {
-    class Node {
+    static class Node {
         int data;
         LinkedList<Node> adjacent;
         boolean visited;
@@ -98,6 +98,13 @@ public class Graph {
     public void print(Node node) {
         System.out.print(node.data + " ");
     }
+
+    public void init() {
+        for (Node node : nodes) {
+            node.visited = false;
+        }
+    }
+
     public static void main(String[] args) {
         Graph graph = new Graph(9);
         graph.addEdge(0, 1);
@@ -113,8 +120,14 @@ public class Graph {
 
         graph.DFS(0);
         System.out.println();
+
+        graph.init();
+
         graph.recurDFS(0);
         System.out.println();
+
+        graph.init();
+
         graph.BFS(0);
     }
 }
