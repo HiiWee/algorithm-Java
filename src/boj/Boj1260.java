@@ -3,7 +3,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Boj1260 {
+class Boj1260_1 {
     static class Graph {
         static class Node {
             int data;
@@ -16,8 +16,10 @@ class Boj1260 {
                 this.adjacent = new LinkedList<>();
             }
         }
+
         StringBuilder sb;
         Node[] nodes;
+
         public Graph(int size) {
             sb = new StringBuilder();
             nodes = new Node[size];
@@ -87,6 +89,7 @@ class Boj1260 {
         }
 
     }
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -112,5 +115,70 @@ class Boj1260 {
         bw.write(graph.sb.toString() + "\n");
         bw.flush();
         bw.close();
+    }
+}
+
+class Boj1260_2 {
+    static int[][] graph;
+    static boolean[] visited;
+    static StringBuilder sb;
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        sb = new StringBuilder();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int vertices = Integer.parseInt(st.nextToken());
+        int edges = Integer.parseInt(st.nextToken());
+        int rootIndex = Integer.parseInt(st.nextToken());
+
+        graph = new int[vertices + 1][vertices + 1];
+        visited = new boolean[vertices + 1];
+        for (int i = 0; i < edges; i++) {
+            st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            graph[x][y] = 1;
+            graph[y][x] = 1;
+        }
+        DFS(rootIndex);
+        bw.write(sb.toString() + "\n");
+        init();
+        BFS(rootIndex);
+        bw.write(sb.toString() + "\n");
+
+        bw.flush();
+        bw.close();
+    }
+
+    public static void DFS(int root) {
+        visited[root] = true;
+        sb.append(root).append(" ");
+        for (int i = 1; i < graph.length; i++) {
+            if (!visited[i] && graph[root][i] == 1) {
+                DFS(i);
+            }
+        }
+    }
+
+    public static void BFS(int root) {
+        Queue<Integer> que = new LinkedList<>();
+        que.add(root);
+        visited[root] = true;
+        while (!que.isEmpty()) {
+            int node = que.poll();
+            for (int i = 1; i < graph.length; i++) {
+                if (!visited[i] && graph[node][i] == 1) {
+                    que.add(i);
+                    visited[i] = true;
+                }
+            }
+            sb.append(node).append(" ");
+        }
+    }
+
+    public static void init() {
+        visited = new boolean[graph.length];
+        sb.setLength(0);
     }
 }
