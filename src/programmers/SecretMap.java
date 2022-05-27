@@ -20,7 +20,6 @@ class SecretMap {
         while (n-- > 0) {
             sb.append(num % 2);
             num /= 2;
-
         }
         return Long.parseLong(sb.reverse().toString());
     }
@@ -41,15 +40,15 @@ class SecretMap {
 
     public static void main(String[] args) {
         int[] n = {5, 6};
-        int[][] arr1 = {{9, 20, 28, 18, 11}, {46, 33, 33 ,22, 31, 50}};
-        int[][] arr2 = {{30, 1, 21, 17, 28}, {27 ,56, 19, 14, 14, 10}};
+        int[][] arr1 = {{9, 20, 28, 18, 11}, {46, 33, 33, 22, 31, 50}};
+        int[][] arr2 = {{30, 1, 21, 17, 28}, {27, 56, 19, 14, 14, 10}};
         int flag = 0;
-        String[][] results = {{"#####","# # #", "### #", "#  ##", "#####"}, {"######", "###  #", "##  ##", " #### ", " #####", "### # "}};
+        String[][] results = {{"#####", "# # #", "### #", "#  ##", "#####"}, {"######", "###  #", "##  ##", " #### ", " #####", "### # "}};
         for (int i = 0; i < n.length; i++) {
             String[] result = solution(n[i], arr1[i], arr2[i]);
             for (int j = 0; j < results[i].length; j++) {
                 if (results[i][j].equals(result[j])) {
-                    flag++;
+                        flag++;
                 }
             }
             if (flag == n[i]) {
