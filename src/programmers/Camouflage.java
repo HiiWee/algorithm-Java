@@ -87,8 +87,8 @@ class Camouflage_1 {
 * 정답 : 24 - 1 = 3
  */
 class Camouflage_2 {
-    Map<String, Integer> map;
-    public int solution(String[][] clothes) {
+    static Map<String, Integer> map;
+    public static int solution(String[][] clothes) {
         int answer = 1;
         map = new HashMap<>();
         // 카테고리별 옷의 종류를 카운트
@@ -100,5 +100,17 @@ class Camouflage_2 {
             answer *= (map.get(key) + 1);
         }
         return answer - 1;
+    }
+
+    public static void main(String[] args) {
+        String[][][] clothes = {{{"yellowhat", "headgear"}, {"bluesunglasses", "eyewear"}, {"green_turban", "headgear"}},
+                {{"crowmask", "face"}, {"bluesunglasses", "face"}, {"smoky_makeup", "face"}}};
+        int[] results = {5, 3};
+
+        for (int i = 0; i < results.length; i++) {
+            if (solution(clothes[i]) == results[i]) {
+                System.out.println("Test " + (i + 1) + " is passed");
+            }
+        }
     }
 }
