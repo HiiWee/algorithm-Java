@@ -9,6 +9,7 @@ public class BinarySearch {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
+        System.out.println();
         System.out.println("Target Number is [" + targetNum + "]");
         System.out.println("Upper Bound BinarySearch");
         upperBoundBinarySearch(arr, targetNum);
@@ -24,12 +25,12 @@ public class BinarySearch {
         int low = 0;
         int high = arr.length;
         int mid;
-        while (low <= high) {
+        while (low < high) {
             mid = (low + high) / 2;
 
             System.out.println("LOW: " + low + " " + "HIGH: " + high + " MID: " + mid);
             if (arr[mid] > targetNum) {
-                high = mid - 1;
+                high = mid;
             } else {
                 low = mid + 1;
             }
@@ -43,12 +44,12 @@ public class BinarySearch {
         int low = 0;
         int high = arr.length;
         int mid;
-        while (low <= high) {
+        while (low < high) {
             mid = (low + high) / 2;
 
             System.out.println("LOW: " + low + " " + "HIGH: " + high + " MID: " + mid);
             if (arr[mid] >= targetNum) {
-                high = mid - 1;
+                high = mid;
             } else {
                 low = mid + 1;
             }
