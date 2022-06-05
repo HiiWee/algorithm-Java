@@ -1,4 +1,4 @@
-package structure;
+package algorithm.search;
 
 public class BinarySearch {
 
