@@ -21,7 +21,7 @@ import java.io.*;
  * <p>
  * P.S. [초기에 배열을 이용해서 값을 입력하고 출력한다는 생각을 하지못하고 바로 콘솔에 출력하려 했던 것이 생각을 복잡하게 만듦]
  */
-class Main {
+class Boj2447 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
