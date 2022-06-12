@@ -20,7 +20,7 @@ class NextBiggerNumber {
     public static int getOneCount(int n) {
         int count = 0;
         int num = n;
-        int mod = Integer.MAX_VALUE;
+        int mod;
         while (true) {
             mod = num % 2;
             num /= 2;
