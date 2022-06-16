@@ -18,7 +18,7 @@ package boj;
 import java.util.*;
 import java.io.*;
 
-class Main {
+class Boj2261 {
     static class Pos {
         int x;
         int y;
