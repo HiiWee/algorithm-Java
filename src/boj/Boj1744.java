@@ -8,7 +8,7 @@ import java.io.*;
     이후 값을 정렬하고 앞에순서부터 짝으로 꺼내어 곱하여 상쇄시킴
     하지만 양수에서 가져온 2개의 값에서 1이 하나라도 있으면 곱하는것보다 더하는것이 더 큰수를 갖게함
 */
-class Main {
+class Boj1744 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
