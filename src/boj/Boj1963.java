@@ -6,7 +6,7 @@ import java.util.*;
    이후 한자리씩 수를 변경하면서 소수인지 판별하는 과정을 BFS를 통해 진행
 
 */
-class Main {
+class Boj1963 {
     static boolean[] primeArr;
     static int[] arr;
     static boolean[] visited;
