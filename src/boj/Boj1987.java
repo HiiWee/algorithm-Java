@@ -15,7 +15,7 @@ package boj;
 import java.util.*;
 import java.io.*;
 
-class Main {
+class Boj1987 {
     static int R, C;
     static char[][] map;
     static boolean[] visited;
