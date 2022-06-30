@@ -57,11 +57,9 @@ class Combination {
          * 이런 순서로 모든 조합들이 하나씩 구해진다
          */
         for (int i = depth; i < n; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                combi1(arr, visited, i + 1, n, r - 1);
-                visited[i] = false;
-            }
+            visited[i] = true;
+            combi1(arr, visited, i + 1, n, r - 1);
+            visited[i] = false;
         }
     }
 
