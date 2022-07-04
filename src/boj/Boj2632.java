@@ -3,7 +3,7 @@ package boj;
 import java.util.*;
 import java.io.*;
 
-class Main {
+class Boj2632 {
     static int size;
     static List<Integer> left = new ArrayList<>();
     static List<Integer> right = new ArrayList<>();
