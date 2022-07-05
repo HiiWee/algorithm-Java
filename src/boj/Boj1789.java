@@ -37,7 +37,7 @@ class Boj1789_1 {
 }
 
 // 그리디 풀이
-class Main {
+class Boj1789 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
