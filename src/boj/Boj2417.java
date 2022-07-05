@@ -4,7 +4,7 @@ import java.io.*;
 import java.math.BigInteger;
 
 // BigInteger 이용, Lower Bound
-class Main {
+class Boj2417_1 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
