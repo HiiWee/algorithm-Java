@@ -3,7 +3,7 @@ package boj;
 import java.util.*;
 import java.io.*;
 
-class Main {
+class Boj2470 {
     static int N;
     static int[] arr;
 
