@@ -22,10 +22,7 @@ class Boj1477 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(arr);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
+
         int low = 1;
         int high = l;
         int mid;
