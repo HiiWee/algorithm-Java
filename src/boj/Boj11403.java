@@ -15,7 +15,8 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Boj11403 {
+// BFS 풀이
+class Boj11403_1 {
     static int n;
     static int[][] arr;
 
@@ -63,5 +64,45 @@ class Boj11403 {
                 }
             }
         }
+    }
+}
+
+/*
+    BFS가 아닌 플로이드 워셜로 풀어보자
+*/
+
+// 플로이드 워셜
+class Boj11403_2 {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine());
+        int[][] map = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < n; j++) {
+                map[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        for (int middle = 0; middle < n; middle++) {
+            for (int from = 0; from < n; from++) {
+                for (int to = 0; to < n; to++) {
+                    if (map[from][middle] == 1 && map[middle][to] == 1) {
+                        map[from][to] = 1;
+                    }
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                sb.append(map[i][j]).append(" ");
+            }
+            sb.append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 }
