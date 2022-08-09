@@ -3,7 +3,7 @@ package boj;
 /*
     초기에 간선을 주어지지 않으므로 다익스트라를 돌면서 거리를 계산하고 최소 거리를 선택하여 최소경로를 만들어 가야함
     1. 노드의 좌표를 리스트에 저장
-    2. 연결되어 있는 간선들은 따로 저장 후 후에 dist배열에서 연결된 부분의 가중치는 0으로 초기화 나머지는 INF'
+    2. 연결되어 있는 간선들은 따로 저장 후 후에 dist배열에서 연결된 부분의 가중치는 0으로 초기화 나머지는 INF
     3. 다익스트라를 실행하며 꺼낸 노드와 가장 가까운 노드를 탐색해야 하므로 visited배열 필요
     4. 다익스트라를 돌며 가장 가까운 노드를 찾기 위해 getDistance 과정 필요
         거리가 m 초과면 패스
@@ -74,6 +74,7 @@ class Boj1277 {
             int curNode = 0;
             double minDist = Integer.MAX_VALUE;
 
+            // 현재 노드중에서 방문하지 않고 거리비용이 가장 작은 노드 찾기
             for (int j = 1; j <= n; j++) {
                 if (!visited[j] && dist[j] < minDist) {
                     curNode = j;
@@ -82,6 +83,8 @@ class Boj1277 {
             }
             visited[curNode] = true;
 
+            // 해당 노드 기준 인접노드의 최소 경로 값을 갱신한다.
+            // 이 때 distance는 두 점 사이의 거리를 구해야한다.
             for (int j = 1; j <= n; j++) {
                 if (curNode == j) {
                     continue;
@@ -95,9 +98,11 @@ class Boj1277 {
                 }
             }
         }
+        // 1000을 곱하고 소수점을 자른 값 반환
         return (long) (dist[n] * 1000);
     }
 
+    // 두 점 사이의 거리 구하기
     public static double getDistance(int n1, int n2) {
         if (connected[n1][n2]) {
             return 0;
