@@ -11,7 +11,7 @@ package boj;
 import java.util.*;
 import java.io.*;
 
-class Boj2660 {
+class Boj2660_1 {
     static List<Integer> list = new ArrayList<>();
     static List<Integer>[] people;
     static int min = Integer.MAX_VALUE;
@@ -82,5 +82,66 @@ class Boj2660 {
             list.add(person);
         }
 
+    }
+}
+
+/*
+    플로이드 워셜로 풀어보자
+*/
+class Boj2660_2 {
+    public static final int INF = 100000;
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine());
+        int[][] relation = new int[n + 1][n + 1];
+        for (int i = 1; i <= n; i++) {
+            Arrays.fill(relation[i], INF);
+            relation[i][i] = 0;
+        }
+        while (true) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            if (start == -1) {
+                break;
+            }
+            relation[start][end] = 1;
+            relation[end][start] = 1;
+        }
+
+        for (int middle = 1; middle <= n; middle++) {
+            for (int from = 1; from <= n; from++) {
+                for (int to = 1; to <= n; to++) {
+                    if (relation[from][to] > relation[from][middle] + relation[middle][to]) {
+                        relation[from][to] = relation[from][middle] + relation[middle][to];
+                    }
+                }
+            }
+        }
+        int min = Integer.MAX_VALUE;
+        List<Integer> persons = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            int max = Integer.MIN_VALUE;
+            for (int j = 1; j <= n; j++) {
+                max = Math.max(max, relation[i][j]);
+            }
+            if (min > max) {
+                min = max;
+                persons = new ArrayList<>();
+                persons.add(i);
+            } else if (min == max) {
+                persons.add(i);
+            }
+        }
+
+        Collections.sort(persons);
+        bw.write(min + " " + persons.size() + "\n");
+        for (int person : persons) {
+            bw.write(person + " ");
+        }
+        bw.flush();
+        bw.close();
     }
 }
