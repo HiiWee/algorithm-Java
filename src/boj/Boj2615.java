@@ -21,7 +21,7 @@ package boj;
 import java.util.*;
 import java.io.*;
 
-class Main {
+class Boj2615 {
     static int[][] map;
 
     public static void main(String[] args) throws Exception {
