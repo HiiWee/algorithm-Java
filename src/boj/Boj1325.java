@@ -12,7 +12,7 @@ package boj;
 import java.util.*;
 import java.io.*;
 
-class Main {
+class Boj1325 {
     static List<Integer>[] graph;
     static int[] nodes;
     static boolean[] visited;
