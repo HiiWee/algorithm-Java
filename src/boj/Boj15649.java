@@ -7,7 +7,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Main {
+class Boj15649 {
     static int n, m;
     static StringBuilder sb = new StringBuilder();
 
