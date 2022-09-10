@@ -1,7 +1,7 @@
 package boj;
 
 /*
-    임의의 수를 받아서 조합
+    임의의 수를 받아서 순열
 */
 
 import java.io.*;
