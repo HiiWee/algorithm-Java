@@ -8,7 +8,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Boj15664 {
+class Boj155663 {
     static int[] arr;
     static StringBuilder sb = new StringBuilder();
 
