@@ -6,7 +6,7 @@ package boj;
 
 import java.io.*;
 
-class Main {
+class Boj1747 {
     static boolean[] visited = new boolean[1100001];
 
     public static void main(String[] args) throws Exception {
