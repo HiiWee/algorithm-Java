@@ -19,6 +19,7 @@ package boj;
 */
 
 import java.io.*;
+import java.util.*;
 
 class Boj17626_1 {
     public static void main(String[] args) throws Exception {
@@ -92,6 +93,45 @@ class Boj17626_2 {
             }
         }
         bw.write(count + "\n");
+        bw.flush();
+        bw.close();
+    }
+}
+
+/*
+    dp[i] = i를 최소 개수의 제곱합으로 표현했을떄의 제곱수의 수
+    따라서 먼저 root(50000)까지의 수에대해서 dp[i * i] = 1로 초기화 한다.
+
+    만약 dp[10]의 값을 구하고 싶다면
+    dp[1] + dp[9]
+    dp[4] + dp[6]
+    dp[9] + dp[1]
+    중에서 최소값을 찾으면 된다.
+
+    따라서 점화식은 다음과 같이 정의할 수 있다.
+    dp[n] = MIN(dp[1] + dp[n - 1], dp[4] + dp[n - 4], ...)
+*/
+
+class Boj17626 {
+    static final int INF = 100000;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine());
+
+        int[] dp = new int[50001];
+        Arrays.fill(dp, INF);
+
+        for (int i = 1; i <= 223; i++) {
+            dp[i * i] = 1;
+        }
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j * j < i; j++ ) {
+                dp[i] = Math.min(dp[i], dp[j * j] + dp[i - j * j]);
+            }
+        }
+
+        bw.write(dp[n] + "\n");
         bw.flush();
         bw.close();
     }
