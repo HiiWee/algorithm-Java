@@ -8,9 +8,7 @@ package boj;
  *
  * */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 class Boj1463 {
     static void calc(int n, int[] dp) {
@@ -32,5 +30,47 @@ class Boj1463 {
         int[] dp = new int[n + 1];
         calc(n, dp);
         System.out.println(dp[n]);
+    }
+}
+
+
+
+
+/*
+    1: 0
+    2: 2 / 2 = 1,                     1
+    3: 3 / 3 = 1,                     1
+    4: (4 - 1) / 3 = 1,               2
+    5: 3안나눠짐, 2안나눠짐, dp[5 - 1] + 1   2 + 1, 3
+    6: dp[6 / 3] + 1                    2
+    7: dp[7 - 1] + 1                 3
+*/
+
+
+// 복습
+class Boj1463_2 {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine());
+
+        int[] dp = new int[n + 1];
+
+        dp[1] = 0;
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1];
+            if (i % 6 == 0) {
+                dp[i] = Math.min(dp[i / 3], dp[i / 2]);
+            } else if (i % 3 == 0) {
+                dp[i] = Math.min(dp[i], dp[i / 3]);
+            }  else if (i % 2 == 0) {
+                dp[i] = Math.min(dp[i], dp[i / 2]);
+            }
+            dp[i]++;
+        }
+
+        bw.write(dp[n] + "\n");
+        bw.flush();
+        bw.close();
     }
 }
