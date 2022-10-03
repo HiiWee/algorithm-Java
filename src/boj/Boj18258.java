@@ -3,7 +3,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Main {
+class Boj18258 {
     static Deque<Integer> deque = new LinkedList<>();
     static StringBuilder sb = new StringBuilder();
 
