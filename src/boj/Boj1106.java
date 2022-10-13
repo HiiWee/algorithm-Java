@@ -109,4 +109,4 @@ class Boj1106_2 {
         bw.flush();
         bw.close();
     }
-}}
+}
