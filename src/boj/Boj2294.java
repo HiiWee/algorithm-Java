@@ -20,7 +20,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Boj {
+class Boj2294 {
     private static final int INF = 100000000;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
