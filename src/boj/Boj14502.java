@@ -9,7 +9,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Main {
+class Boj14502 {
     static int n, m;
     static int[][] map;
 
