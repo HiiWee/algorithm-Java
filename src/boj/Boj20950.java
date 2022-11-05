@@ -44,14 +44,14 @@ class Boj20950 {
     }
 
     public static void backtracking(int r, int g, int b, int depth, int count) {
+        if (count > 7) {
+            return;
+        }
         if (depth == n) {
             if (count < 2) {
                 return;
             }
             updateMinValue(r, g, b, count);
-            return;
-        }
-        if (count >= 7) {
             return;
         }
         backtracking(r + colors[depth][0], g + colors[depth][1], b + colors[depth][2], depth + 1, count + 1);
