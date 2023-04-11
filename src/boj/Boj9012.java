@@ -1,8 +1,10 @@
 package boj;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.*;
 
 // 내 풀이
@@ -71,5 +73,42 @@ class Boj9012_2 {
         } else {
             return "NO";
         }
+    }
+}
+
+
+class Boj9012_3 {
+    private static Stack<Character> stack = new Stack<>();
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
+        int count = Integer.parseInt(br.readLine());
+
+        while (count-- > 0) {
+            sb.append(solve(br.readLine()))
+                    .append("\n");
+            stack.clear();
+        }
+        bw.write(sb.toString());
+        bw.flush();
+
+    }
+
+    public static String solve(String brackets) {
+        for (char bracket : brackets.toCharArray()) {
+            if (bracket == '(') {
+                stack.push(bracket);
+            }
+            else if (stack.isEmpty()) {
+                return "NO";
+            }
+            stack.pop();
+        }
+        if (stack.isEmpty()) {
+            return "YES";
+        }
+        return "NO";
     }
 }
