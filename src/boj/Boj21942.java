@@ -18,7 +18,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Main {
+class Boj21942 {
 
     private static final int[] monthDate = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private static Map<String, String> borrowList = new HashMap<>();
