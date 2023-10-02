@@ -41,7 +41,6 @@ class Boj16234 {
             }
         }
 
-
         while (true) {
             boolean isWorking = false;
             for (int i = 0; i < n; i++) {
@@ -80,7 +79,7 @@ class Boj16234 {
                     continue;
                 }
                 int difference = Math.abs(map[curNode.r][curNode.c] - map[nextR][nextC]);
-                if (visited[nextR][nextC] == gameLevel && (difference >= l && difference <= r)) {
+                if (visited[nextR][nextC] != gameLevel + 1 && difference >= l && difference <= r) {
                     visited[nextR][nextC] = gameLevel + 1;
                     Node nextNode = new Node(nextR, nextC);
                     que.offer(nextNode);
@@ -91,6 +90,7 @@ class Boj16234 {
 
         if (nodes.size() == 1) {
             nodes.remove(node);
+            visited[node.r][node.c] = gameLevel;
             return false;
         }
         updateMap();
