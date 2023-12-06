@@ -3,7 +3,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Main {
+class Boj20057 {
 
     // 좌 하 우 상
     private static final int[] rows = {0, 1, 0, -1};
