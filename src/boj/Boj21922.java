@@ -7,7 +7,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Main {
+class Boj21922 {
 
     static class Node {
         int r, c;
@@ -49,8 +49,8 @@ class Main {
         for (Node node : airNodes) {
             for (int i = 0; i < 4; i++) {
                 int nextR = rows[i] + node.r;
-                int nextC = cols[i] + node.c;                ;
-                moveForward(node, new Node(nextR, nextC), i);
+                int nextC = cols[i] + node.c;
+                moveForward(new Node(nextR, nextC), i);
             }
         }
 
@@ -67,11 +67,7 @@ class Main {
         bw.close();
     }
 
-    public static void moveForward(Node startNode, Node curNode, int dir) {
-        // 사이클을 돌면 종료
-        if (startNode.r == curNode.r && startNode.c == curNode.c) {
-            return;
-        }
+    public static void moveForward(Node curNode, int dir) {
         // 올바른 좌표가 아니면 종료
         if (!isPossible(curNode.r, curNode.c)) {
             return;
@@ -83,7 +79,7 @@ class Main {
         }
         int nextR = curNode.r + rows[dir];
         int nextC = curNode.c + cols[dir];
-        moveForward(startNode, new Node(nextR, nextC), dir);
+        moveForward(new Node(nextR, nextC), dir);
     }
 
     public static int getNextDirection(Node node, int dir) {
