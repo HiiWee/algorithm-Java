@@ -58,21 +58,16 @@ class Boj22870 {
     }
 
     private static void findRoute(final int[] dist, final int[] backDist) {
-        int pre = -1;
         int start = s;
         while (start != e) {
             int minNodeNumber = Integer.MAX_VALUE;
             for (Node nextNode : graphs[start]) {
-                if (nextNode.number == pre) {
-                    continue;
-                }
                 // 시작노드까지의 최단경로 + 다음 노드의 값 + 끝지점부터 다음노드까지의 최단 경로가 시작 ~ 도착까지의 최단경로 길이와 같아야 함
-                if (dist[start] + nextNode.dist + backDist[nextNode.number] == dist[e]) {
+                if (dist[start] + nextNode.dist + backDist[nextNode.number] == dist[e] && !visited[nextNode.number]) {
                     minNodeNumber = Math.min(minNodeNumber, nextNode.number);
                 }
             }
             visited[minNodeNumber] = true;
-            pre = start;
             start = minNodeNumber;
         }
     }
