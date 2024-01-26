@@ -6,54 +6,36 @@ import java.util.*;
 class Boj1174 {
 
     static int n;
-    static int findNumber = -1;
+    static final int[] numbers = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    static List<Long> findNumbers = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        n = Integer.parseInt(br.readLine());
+        int n = Integer.parseInt(br.readLine());
 
         find(0, 0);
 
-        bw.write(findNumber + "");
+        findNumbers.sort(Comparator.naturalOrder());
+
+        if (findNumbers.size() < n) {
+            bw.write("-1");
+        } else {
+            bw.write(findNumbers.get(n - 1) + "");
+        }
         bw.flush();
         bw.close();
     }
 
-    public static void find(int count, int curNumber) {
-        if (isDescendingNumber(curNumber)) {
-            count++;
+    public static void find(int index, long number) {
+        if (!findNumbers.contains(number)) {
+            findNumbers.add(number);
         }
-        if (count == n) {
-            findNumber = curNumber;
+        if (index == 10) {
             return;
         }
-        int nextNumber = getNextNumber(curNumber);
-        find(count, nextNumber);
-    }
 
-    public static int getNextNumber(int number) {
-        while (number % 100 != 10) {
-            number++;
-        }
-        return number;
-    }
-
-    public static boolean isDescendingNumber(int number) {
-        if (number <= 10) {
-            return true;
-        }
-
-        int curNumber = -1;
-        while (number > 0) {
-            int sep = number % 10;
-            number = number / 10;
-
-            if (sep <= curNumber) {
-                return false;
-            }
-            curNumber = sep;
-        }
-        return true;
+        find(index + 1, number * 10 + numbers[index]);
+        find(index + 1, number);
     }
 }
