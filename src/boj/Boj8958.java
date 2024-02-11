@@ -2,7 +2,7 @@ package boj;
 
 import java.io.*;
 
-class Main {
+class Boj8958 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
