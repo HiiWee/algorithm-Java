@@ -5,11 +5,6 @@ import java.util.*;
 
 class Boj12100 {
 
-    // 상우하좌
-    static final int[] rows = {-1, 0, 1, 0};
-    static final int[] cols = {0, 1, 0, -1};
-
-    static int[] OUT;
     static int n;
     static int[][] map;
     static int max;
@@ -37,7 +32,6 @@ class Boj12100 {
 
     public static void permutations(int[] out, int count) {
         if (count == 5) {
-            OUT = out;
             int[][] copyMap = copyMap(map);
             moveBlock(out, copyMap);
             max = Math.max(max, findMaxValue(copyMap));
@@ -85,154 +79,86 @@ class Boj12100 {
     }
 
     public static void up(int[][] map) {
-        boolean[][] isDone = new boolean[n][n];
-        for (int i = 1; i < n; i++) {
+        for (int i = 0; i < n; i++) {
+            int index = 0;
+            int block = 0;
             for (int j = 0; j < n; j++) {
-                if (map[i][j] == 0) {
+                if (map[j][i] == 0) {
                     continue;
                 }
-                // 현재 칸이 숫자라면 위로 올라가야하므로
-                int row = getRow(i, j, 0, map);
-                // 위로 갔을때 만나는 첫번째 숫자와 동일하다면 합치고, 그렇지 않다면 한칸 아래까지 옮김
-                if (!isDone[row][j] && map[i][j] == map[row][j]) {
-                    isDone[row][j] = true;
-                    map[row][j] *= 2;
-                    map[i][j] = 0;
-                } else if (map[row][j] == 0) {
-                    // 그냥 0이라면 숫자만 그 자리에 올려줌
-                    map[row][j] = map[i][j];
-                    map[i][j] = 0;
+                if (block == map[j][i]) {
+                    map[index - 1][i] *= 2;
+                    map[j][i] = 0;
+                    block = 0;
                 } else {
-                    map[row + 1][j] = map[i][j];
-                    if (row + 1 != i) {
-                        map[i][j] = 0;
-                    }
+                    block = map[j][i];
+                    map[j][i] = 0;
+                    map[index++][i] = block;
                 }
             }
         }
     }
 
     public static void right(int[][] map) {
-        boolean[][] isDone = new boolean[n][n];
-        for (int i = n - 2; i >= 0; i--) {
-            for (int j = 0; j < n; j++) {
-                if (map[j][i] == 0) {
+        for (int i = 0; i < n; i++) {
+            int index = n - 1;
+            int block = 0;
+            for (int j = n - 1; j >= 0; j--) {
+                if (map[i][j] == 0) {
                     continue;
                 }
-                // 현재 칸이 숫자라면 우측으로 가야하므로 열을 찾음
-                int col = getColumn(j, i, 1, map);
-                // 우측으로 갔을때 만나는 첫번째 숫자와 동일하다면 합치고, 그렇지 않다면 한칸 왼쪽까지 옮김
-                if (!isDone[j][col] && map[j][i] == map[j][col]) {
-                    isDone[j][col] = true;
-                    map[j][col] *= 2;
-                    map[j][i] = 0;
-                } else if (map[j][col] == 0) {
-                    map[j][col] = map[j][i];
-                    map[j][i] = 0;
+                if (block == map[i][j]) {
+                    map[i][index + 1] *= 2;
+                    map[i][j] = 0;
+                    block = 0;
                 } else {
-                    map[j][col - 1] = map[j][i];
-                    if (col - 1 != i) {
-                        map[j][i] = 0;
-                    }
+                    block = map[i][j];
+                    map[i][j] = 0;
+                    map[i][index--] = block;
                 }
             }
         }
     }
 
     public static void down(int[][] map) {
-        boolean[][] isDone = new boolean[n][n];
-        for (int i = n - 2; i >= 0; i--) {
-            for (int j = 0; j < n; j++) {
-                if (map[i][j] == 0) {
+        for (int i = 0; i < n; i++) {
+            int index = n - 1;
+            int block = 0;
+            for (int j = n - 1; j >= 0; j--) {
+                if (map[j][i] == 0) {
                     continue;
                 }
-                // 현재 칸이 숫자라면 아래로 내려가야함
-                int row = getRow(i, j, 2, map);
-                // 아래로 갔을때 만나는 첫번째 숫자와 동일하다면 합치고, 그렇지 않다면 한칸 위까지 옮김
-                if (!isDone[row][j] && map[i][j] == map[row][j]) {
-                    isDone[row][j] = true;
-                    map[row][j] *= 2;
-                    map[i][j] = 0;
-                } else if (map[row][j] == 0) {
-                    map[row][j] = map[i][j];
-                    map[i][j] = 0;
+                if (block == map[j][i]) {
+                    map[index + 1][i] *= 2;
+                    map[j][i] = 0;
+                    block = 0;
                 } else {
-                    map[row - 1][j] = map[i][j];
-                    if (row - 1 != i) {
-                        map[i][j] = 0;
-                    }
+                    block = map[j][i];
+                    map[j][i] = 0;
+                    map[index--][i] = block;
                 }
             }
         }
     }
 
     public static void left(int[][] map) {
-        boolean[][] isDone = new boolean[n][n];
-        for (int i = 1; i < n; i++) {
+        for (int i = 0; i < n; i++) {
+            int index = 0;
+            int block = 0;
             for (int j = 0; j < n; j++) {
-                if (map[j][i] == 0) {
+                if (map[i][j] == 0) {
                     continue;
                 }
-                // 현재 칸이 숫자라면 왼쪽으로 가야하므로 0이아닌 첫번째 열을 찾음
-                int col = getColumn(j, i, 3, map);
-                // 왼쪽으로 갔을때 만나는 첫번째 숫자와 동일하다면 합치고, 그렇지 않다면 한칸 오른쪽까지 옮김
-                if (!isDone[j][col] && map[j][i] == map[j][col]) {
-                    isDone[j][col] = true;
-                    map[j][col] *= 2;
-                    map[j][i] = 0;
-                } else if (map[j][col] == 0) {
-                    map[j][col] = map[j][i];
-                    map[j][i] = 0;
+                if (block == map[i][j]) {
+                    map[i][index - 1] *= 2;
+                    map[i][j] = 0;
+                    block = 0;
                 } else {
-                    map[j][col + 1] = map[j][i];
-                    if (col + 1 != i) {
-                        map[j][i] = 0;
-                    }
+                    block = map[i][j];
+                    map[i][j] = 0;
+                    map[i][index++] = block;
                 }
             }
         }
-    }
-
-    public static int getColumn(int r, int c, int dir, int[][] map) {
-        int findC;
-        while (true) {
-            r += rows[dir];
-            c += cols[dir];
-
-            if (c < 0) {
-                findC = 0;
-                break;
-            } else if (c >= n) {
-                findC = n - 1;
-                break;
-            }
-            if (map[r][c] != 0) {
-                findC = c;
-                break;
-            }
-        }
-
-        return findC;
-    }
-
-    public static int getRow(int r, int c, int dir, int[][] map) {
-        int findR;
-        while (true) {
-            r += rows[dir];
-            c += cols[dir];
-            if (r < 0) {
-
-                findR = 0;
-                break;
-            } else if (r >= n) {
-                findR = n - 1;
-                break;
-            }
-            if (map[r][c] != 0) {
-                findR = r;
-                break;
-            }
-        }
-        return findR;
     }
 }
