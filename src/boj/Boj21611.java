@@ -3,7 +3,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Main {
+class Boj21611 {
 
     static class Node {
         int r, c, marble;
