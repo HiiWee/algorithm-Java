@@ -3,7 +3,7 @@ package boj;
 import java.io.*;
 import java.util.*;
 
-class Main {
+class Boj2023 {
 
     static int n;
     static StringBuilder answer = new StringBuilder();
