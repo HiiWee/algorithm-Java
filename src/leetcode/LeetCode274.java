@@ -1,4 +1,4 @@
-package boj;
+package leetcode;
 
 class LeetCode274 {
     public int hIndex(int[] citations) {

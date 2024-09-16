@@ -1,4 +1,4 @@
-package boj;
+package leetcode;
 
 import java.util.*;
 
